@@ -1,5 +1,5 @@
 pipeline {
-    agent none
+    agent any
     stages {
         stage('Build') {
             agent {
@@ -30,6 +30,7 @@ pipeline {
             agent {
                 docker {
                     image 'cdrx/pyinstaller-linux:python2'
+                    args "--entrypoint=''"
                 }
             }
             steps {
@@ -37,7 +38,7 @@ pipeline {
             }
             post {
                 success {
-                    archiveArtifacts 'dist/add2valsa'
+                    archiveArtifacts 'dist/add2vals'
                 }
             }
         }
