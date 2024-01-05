@@ -1,5 +1,5 @@
 pipeline {
-    agent any
+    agent none
     stages {
         stage('Build') {
             agent {
@@ -30,7 +30,6 @@ pipeline {
             agent {
                 docker {
                     image 'cdrx/pyinstaller-linux:python2'
-                    args "--entrypoint=''"
                 }
             }
             steps {
