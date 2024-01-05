@@ -30,7 +30,6 @@ pipeline {
             agent {
                 docker {
                     image 'cdrx/pyinstaller-linux:python2'
-                    alwaysPull true
                 }
             }
             steps {
@@ -38,10 +37,9 @@ pipeline {
             }
             post {
                 success {
-                    archiveArtifacts 'dist/add2vals'
+                    archiveArtifacts 'dist/add2valsa'
                 }
             }
         }
-        
     }
 }
