@@ -35,10 +35,9 @@ pipeline {
             }
             steps {
                 withCredentials([usernamePassword(credentialsId: 'SSH_TO_SERVER', usernameVariable: 'SSH_USERNAME', passwordVariable: 'SSH_PASSWORD')]) {
-                    script{
+                    script {
                         // Menunggu 1 menit
                         sleep time: 1, unit: 'MINUTES'
-
 
                         def remote = [:]
                         remote.name = 'Server'
@@ -49,14 +48,18 @@ pipeline {
 
                         // Create directory
                         sshCommand remote: remote, command: """
-                              mkdir -p /data/simple-python
+                            mkdir -p /data/simple-python
                         """ 
 
                         // Put files
                         sshPut remote: remote, from: 'sources', into: '/data/simple-python'
                         sshPut remote: remote, from: 'sources', into: '/data/simple-python'
 
-
+                        // Run test_calc.py
+                        sshCommand remote: remote, command: """
+                            cd /data/simple-python
+                            python test_calc.py
+                        """
                     }
                 }
             }
