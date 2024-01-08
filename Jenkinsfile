@@ -57,7 +57,7 @@ pipeline {
 
                         // Run test_calc.py
                         sshCommand remote: remote, command: """
-                            cd /data/simple-python
+                            cd /data/simple-python/sources
                             python test_calc.py
                         """
                     }
