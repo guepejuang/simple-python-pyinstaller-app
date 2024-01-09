@@ -27,6 +27,14 @@ pipeline {
                 }
             }
         }
+        stage('Manual Approval') {
+            steps {
+                script {
+                    // Menunggu persetujuan manual
+                    input message: 'Yakin akan melanjutkan proses deployment?'
+                }
+            }
+        }
         stage('Deploy') {
             agent any
             environment { 
